@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Εξυπηρετητής: 127.0.0.1
--- Χρόνος δημιουργίας: 20 Νοε 2026 στις 20:14:42
+-- Χρόνος δημιουργίας: 20 Νοε 2026 στις 20:56:54
 -- Έκδοση διακομιστή: 10.11.16-MariaDB
 -- Έκδοση PHP: 8.3.36
 
@@ -64,6 +64,19 @@ CREATE TABLE `games` (
 -- --------------------------------------------------------
 
 --
+-- Δομή πίνακα για τον πίνακα `game_kick_votes`
+--
+
+CREATE TABLE `game_kick_votes` (
+  `game_id` int(11) NOT NULL,
+  `target_pawn` enum('R','B','G','Y') NOT NULL,
+  `voter_pawn` enum('R','B','G','Y') NOT NULL,
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
 -- Δομή πίνακα για τον πίνακα `game_players`
 --
 
@@ -76,6 +89,7 @@ CREATE TABLE `game_players` (
   `y` tinyint(1) NOT NULL,
   `walls_left` tinyint(2) NOT NULL DEFAULT 10,
   `is_ready` tinyint(1) NOT NULL DEFAULT 0,
+  `status` enum('active','kicked') NOT NULL DEFAULT 'active',
   `turn_order` tinyint(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -308,6 +322,12 @@ ALTER TABLE `games`
   ADD KEY `host_user_id` (`host_user_id`);
 
 --
+-- Ευρετήρια για πίνακα `game_kick_votes`
+--
+ALTER TABLE `game_kick_votes`
+  ADD PRIMARY KEY (`game_id`,`target_pawn`,`voter_pawn`);
+
+--
 -- Ευρετήρια για πίνακα `game_players`
 --
 ALTER TABLE `game_players`
@@ -373,6 +393,12 @@ ALTER TABLE `users`
 --
 ALTER TABLE `games`
   ADD CONSTRAINT `games_ibfk_1` FOREIGN KEY (`host_user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE;
+
+--
+-- Περιορισμοί για πίνακα `game_kick_votes`
+--
+ALTER TABLE `game_kick_votes`
+  ADD CONSTRAINT `game_kick_votes_ibfk_1` FOREIGN KEY (`game_id`) REFERENCES `games` (`id`) ON DELETE CASCADE;
 
 --
 -- Περιορισμοί για πίνακα `game_players`
