@@ -8,5 +8,5 @@
     $password = $_ENV['DB_PASS'];
 
     mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT);
-    $mysqli = new mysqli($host, $username, $password, $dbname);
+    $mysqli = new mysqli($host, $username, $password, $dbname/*, null, '/path to home directory/mysql/run/mysql.sock'*/); //add the parameters only when hosted on users.iee.ihu.gr
 ?>
