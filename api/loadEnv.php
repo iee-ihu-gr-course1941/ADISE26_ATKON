@@ -1,6 +1,6 @@
 <?php
     function loadEnv() {
-        $envFile = __DIR__ . '/../../../.env';
+        $envFile = __DIR__ . '/../.env';
         if (!file_exists($envFile)) {
             die("Error: .env file not found.");
         }
