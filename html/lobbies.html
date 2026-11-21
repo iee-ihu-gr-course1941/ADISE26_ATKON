@@ -3,10 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Quoridor - Lobbies</title>
     <script src="https://code.jquery.com/jquery-4.1.0.min.js" integrity="sha256-hjRvPkFLO1JGZFMXGrzdpG6TlsHDyjp4PQeqLWRcMzk=" crossorigin="anonymous"></script>
 </head>
-<body>
-    <script src="js/lobbies.js"></script>
+<body style="display: none;">
+    <header>
+        <span id="welcome-user"></span>
+        <button id="logout-btn">Logout</button>
+    </header>
+
+    <script src="../js/authGuard.js"></script>
+    <script src="../js/lobbies.js"></script>
 </body>
 </html>

@@ -1,0 +1,7 @@
+# Blocks folders
+Options -Indexes
+
+# Blocks .env and .sql, and .git
+<FilesMatch "(^\.|\.(env|sql)$)">
+    Require all denied
+</FilesMatch>

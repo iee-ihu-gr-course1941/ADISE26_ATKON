@@ -3,11 +3,54 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <script src="https://code.jquery.com/jquery-4.1.0.min.js" integrity="sha256-hjRvPkFLO1JGZFMXGrzdpG6TlsHDyjp4PQeqLWRcMzk=" crossorigin="anonymous"></script>
+    <title>Quoridor - Login &amp; Register</title>
+    <link rel="stylesheet" href="css/index.css">
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
 </head>
 <body>
-    <p>Welcome to kostas the index page!</p>
+    <main class="auth-container">
+        <h1>Quoridor</h1>
+
+        <div class="auth-tabs">
+            <button type="button" class="tab-btn active" data-target="#login-form">Login</button>
+            <button type="button" class="tab-btn" data-target="#register-form">Register</button>
+        </div>
+
+        <p id="auth-error" class="error-msg" role="alert"></p>
+
+        <!-- Login Form -->
+        <form id="login-form" class="auth-form">
+            <div class="form-group">
+                <label for="login-username">Username</label>
+                <input type="text" id="login-username" name="username" required autocomplete="username">
+            </div>
+
+            <div class="form-group">
+                <label for="login-password">Password</label>
+                <input type="password" id="login-password" name="password" required autocomplete="current-password">
+            </div>
+
+            <button type="submit">Log In</button>
+        </form>
+
+        <!-- Register Form -->
+        <form id="register-form" class="auth-form" style="display: none;">
+            <div class="form-group">
+                <label for="register-username">Username</label>
+                <input type="text" id="register-username" name="username" minlength="3" maxlength="30" pattern="[a-zA-Z0-9_]{3,30}" required autocomplete="username">
+                <small>3–30 characters (letters, numbers, underscores)</small>
+            </div>
+
+            <div class="form-group">
+                <label for="register-password">Password</label>
+                <input type="password" id="register-password" name="password" minlength="6" required autocomplete="new-password">
+                <small>At least 6 characters</small>
+            </div>
+
+            <button type="submit">Create Account</button>
+        </form>
+    </main>
+
     <script src="js/index.js"></script>
 </body>
 </html>

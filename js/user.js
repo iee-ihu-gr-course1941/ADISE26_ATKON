@@ -1,3 +1,4 @@
-$(function() {
-    // Your jQuery code here
+$(async function () {
+    const user = await authGuard();
+    if (!user) return;
 });
