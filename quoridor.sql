@@ -413,16 +413,6 @@ ALTER TABLE `game_players`
 ALTER TABLE `game_walls`
   ADD CONSTRAINT `game_walls_ibfk_1` FOREIGN KEY (`game_id`) REFERENCES `games` (`id`) ON DELETE CASCADE;
 
-SET GLOBAL event_scheduler = ON;
-
-CREATE EVENT IF NOT EXISTS `cleanup_expired_lobbies`
-ON SCHEDULE EVERY 1 MINUTE
-STARTS CURRENT_TIMESTAMP
-DO
-  DELETE FROM `games`
-  WHERE `status` = 'lobby'
-    AND `updated_at` < (NOW() - INTERVAL 2 MINUTE);
-
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
