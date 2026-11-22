@@ -412,7 +412,6 @@ ALTER TABLE `game_players`
 --
 ALTER TABLE `game_walls`
   ADD CONSTRAINT `game_walls_ibfk_1` FOREIGN KEY (`game_id`) REFERENCES `games` (`id`) ON DELETE CASCADE;
-
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
