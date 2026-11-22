@@ -5,12 +5,52 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Quoridor - Lobbies</title>
     <script src="https://code.jquery.com/jquery-4.1.0.min.js" integrity="sha256-hjRvPkFLO1JGZFMXGrzdpG6TlsHDyjp4PQeqLWRcMzk=" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="../css/lobbies.css">
 </head>
 <body style="display: none;">
-    <header>
-        <span id="welcome-user"></span>
-        <button id="logout-btn">Logout</button>
+    <header class="site-header">
+        <div class="user-summary">
+            <span id="welcome-user"></span>
+            <span id="user-stats"></span>
+        </div>
+        <button id="logout-btn" type="button">Logout</button>
     </header>
+
+    <main class="lobbies-layout">
+        <aside class="current-lobby-panel">
+            <h2>Your Lobby</h2>
+            <div id="current-lobby-info"></div>
+            <form id="create-lobby-form">
+                <label for="create-max-players">Player slots</label>
+                <select id="create-max-players" name="max_players">
+                    <option value="2">2 players</option>
+                    <option value="4">4 players</option>
+                </select>
+
+                <label class="visibility-option">
+                    <input id="create-is-public" type="checkbox" checked>
+                    Public lobby
+                </label>
+
+                <button id="create-lobby-btn" type="submit">Create Lobby</button>
+            </form>
+            <form id="join-by-code-form">
+                <label for="join-room-code">Join with room code</label>
+                <input id="join-room-code" name="room_code" type="text" minlength="6" maxlength="6" pattern="[A-Za-z]{6}" autocomplete="off" required>
+                <button id="join-by-code-btn" type="submit">Join Lobby</button>
+            </form>
+            <p id="current-lobby-error" class="error-msg" role="alert"></p>
+        </aside>
+
+        <section class="public-lobbies">
+            <div class="lobbies-toolbar">
+                <h1>Public Lobbies</h1>
+                <button id="refresh-lobbies-btn" type="button">Refresh</button>
+            </div>
+            <p id="lobbies-error" class="error-msg" role="alert"></p>
+            <div id="lobbies-list"></div>
+        </section>
+    </main>
 
     <script src="../js/authGuard.js"></script>
     <script src="../js/lobbies.js"></script>
